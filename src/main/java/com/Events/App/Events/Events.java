@@ -15,6 +15,10 @@ import com.Events.App.Venu.Venu;
 @Table
 public class Events {
     // add a reference to the theme class, one to one type 
+    public enum Schedule {
+        recurring,
+        onestime 
+    }
     @Id
     @SequenceGenerator(name="event_sequence",sequenceName = "event_sequence",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "event_sequence")
@@ -25,6 +29,8 @@ public class Events {
     private Float Rating;
     private LocalDate date;
     private String description;
+    @Enumerated(EnumType.STRING)
+    private Schedule schedule;
 
     @OneToMany
     Set<Theme>themes;
@@ -43,13 +49,15 @@ public class Events {
     public Events(){
 
     }
-    public Events(String name,Integer estimatedArrival,Integer actualArrivals,Float Rating,LocalDate date,String description){
+    public Events(String name,Integer estimatedArrival,Integer actualArrivals,Float Rating,LocalDate date,String description,Schedule schedule)
+    {
         this.name = name;
         this.description = description;
         this.estimatedArrival = estimatedArrival;
         this.actualArrivals = actualArrivals;
         this.date = date;
         this.description = description;
+        this.schedule = schedule;
         
     }
     public Set<Organizers> getOrganizers() {

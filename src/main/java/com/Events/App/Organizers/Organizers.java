@@ -19,6 +19,7 @@ public class Organizers {
     private String name;
     private int followers;
     private String email;
+    // private String password;
     @ManyToMany
     @JoinTable(
         name="organizerEventMapping",

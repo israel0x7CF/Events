@@ -30,6 +30,10 @@ public class OrganizerController {
         this.organizerService.createOrganizer(organizer);
 
     }
+    @GetMapping("/{id}")
+    public Organizers getOrganizerById(@PathVariable("id") Long id){
+        return this.organizerService.getOrgnizerById(id);
+    }
     @PutMapping("/organizer/{id}")
     public void updateRating(@PathVariable("id") Long organizer_id,@RequestBody OrganizerDto oDto){
         Organizers organizer = this.organizerService.getOrgnizerById(organizer_id);
