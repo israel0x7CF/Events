@@ -29,8 +29,8 @@ public class Events {
     private Float Rating;
     private LocalDate date;
     private String description;
-    @Enumerated(EnumType.STRING)
-    private Schedule schedule;
+    // @Enumerated(EnumType.STRING)
+    // private Schedule schedule;
 
     @OneToMany
     Set<Theme>themes;
@@ -57,7 +57,7 @@ public class Events {
         this.actualArrivals = actualArrivals;
         this.date = date;
         this.description = description;
-        this.schedule = schedule;
+        // this.schedule = schedule;
         
     }
     public Set<Organizers> getOrganizers() {

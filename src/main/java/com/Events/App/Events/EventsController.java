@@ -28,6 +28,10 @@ public class EventsController
     public List<Events> getAllEvents(){
         return this.eventService.getAllEvents();
     }
+    @GetMapping("/{id}")
+    public Events getEventById(@PathVariable("id") Long id){
+        return this.eventService.findEventById(id);
+    }
     @PostMapping
     public void postEvent(@RequestBody Events event,@RequestParam Long  organizerId){
         
