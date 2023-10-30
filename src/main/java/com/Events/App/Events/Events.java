@@ -27,7 +27,7 @@ public class Events {
     private Integer estimatedArrival;
     private Integer actualArrivals;
     private Float Rating;
-    private LocalDate date;
+    private LocalDate eventDate;
     private String description;
     // @Enumerated(EnumType.STRING)
     // private Schedule schedule;
@@ -55,7 +55,7 @@ public class Events {
         this.description = description;
         this.estimatedArrival = estimatedArrival;
         this.actualArrivals = actualArrivals;
-        this.date = date;
+        this.eventDate = date;
         this.description = description;
         // this.schedule = schedule;
         
@@ -82,7 +82,7 @@ public class Events {
         return Rating;
     }
     public LocalDate getDate() {
-        return date;
+        return eventDate;
     }
     public Set<Venu> getVenus() {
         return venus;
@@ -97,7 +97,7 @@ public class Events {
         this.name = name;
     }
     public void setDate(LocalDate date) {
-        this.date = date;
+        this.eventDate = date;
     }
     public void setRating(Float rating) {
         Rating = rating;
