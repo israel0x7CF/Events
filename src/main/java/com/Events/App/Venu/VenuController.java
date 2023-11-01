@@ -30,4 +30,5 @@ public class VenuController {
     public Venu getVenuById(@PathVariable("id") long id){
         return this.venuService.getVenuById(id);
     }
+
 }

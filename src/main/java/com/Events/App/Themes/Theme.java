@@ -18,9 +18,9 @@ public class Theme {
     private Long Id;
     private String name;
     private String Discrpiton;
-    @ManyToOne
-    @JoinColumn(name = "EventId")
-    Events events;
+    // @ManyToOne
+    // @JoinColumn(name = "EventId")
+    // Events events;
 
     public Theme(){
 
@@ -34,9 +34,9 @@ public class Theme {
     public String getDiscrpiton() {
         return Discrpiton;
     }
-    public Events getEvents() {
-        return events;
-    }
+    // public Events getEvents() {
+    //     return events;
+    // }
     public String getName() {
         return this.name;
     }
@@ -46,7 +46,12 @@ public class Theme {
     public void setDiscrpiton(String discrpiton) {
         this.Discrpiton = discrpiton;
     }
-    public void setEvents(Events events) {
-        this.events = events;
+    // public void setEvents(Events events) {
+    //     this.events = events;
+    // }
+    @Override
+    public String toString() {
+        return String.format("Theme(id=%d, name=%s, Discrpiton=%s)", Id , name,Discrpiton );
     }
+
 }
