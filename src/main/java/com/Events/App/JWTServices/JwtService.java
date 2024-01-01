@@ -1,18 +1,22 @@
-import java.util.HashMap;
-import java.util.function.Function;
+package com.Events.App.JWTServices;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.HashMap;
+import java.util.Date;
+import java.util.Map;
+import org.springframework.stereotype.Component;
+import java.security.Key;
+import java.util.function.Function;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-
 @Component
 public class JwtService {
-    @Value("jwt.secret")
+    @Value("${jwt.secret}")
     private String jwtSecret;
 
     public String generateToken(String userName) {
@@ -20,13 +24,17 @@ public class JwtService {
         return createToken(userName, claims);
     }
 
+
     private String createToken(String userName, Map<String, Object> claims) {
         return Jwts.builder().setClaims(claims).setSubject(userName).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
                 
     }
-    private byte [] getSignKey(){
+    public Date extractExpirationDate(String token){
+        return extractClaim(token,Claims::getExpiration);
+    }
+    private Key getSignKey(){
         byte [] secretKeyByte = Decoders.BASE64.decode(jwtSecret);
         return Keys.hmacShaKeyFor(secretKeyByte);
     }
