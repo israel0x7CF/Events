@@ -42,8 +42,9 @@ public class Events {
         inverseJoinColumns=@JoinColumn(name="venu_id")
         )
     Set<Venu> venus;
-    @ManyToMany(mappedBy = "event")
-    private Set<Organizers> organizers;
+    @ManyToOne
+    @JoinColumn(name = "event")
+    private Organizers organizers;
     
   
     public Events(){
@@ -60,7 +61,7 @@ public class Events {
         // this.schedule = schedule;
         
     }
-    public Set<Organizers> getOrganizers() {
+    public Organizers getOrganizers() {
         return this.organizers;
     }
     public String getDescription() {
@@ -108,7 +109,7 @@ public class Events {
     public void setVenus(Set<Venu> venus) {
         this.venus = venus;
     }
-    public void setOrganizers(Set<Organizers> organizers){
+    public void setOrganizers(Organizers organizers){
         this.organizers = organizers;
     }
 }

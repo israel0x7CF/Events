@@ -35,9 +35,9 @@ public class EventService {
     {
         Optional<Events> e = eventRepository.findEventByName(event.getName());
         // Long id = organizerService.createOrganizer(organizer);
-        Set<Organizers> organizers = new HashSet<>();
+        Organizers organizers;
         // insert a null check
-        organizers.add(this.organizerService.getOrgnizerById(organizerid));
+     
         
 
         if(e.isPresent()){
@@ -45,7 +45,7 @@ public class EventService {
         }
         // modify this once relations are added
         
-        event.setOrganizers(organizers);
+        event.setOrganizers(this.organizerService.getOrgnizerById(organizerid));
         eventRepository.save(event);
     
     }

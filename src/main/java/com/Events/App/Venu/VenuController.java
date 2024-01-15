@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class VenuController {
     private VenuService venuService;
 
-    @Autowired
+
     public VenuController(VenuService venuService){
         this.venuService = venuService;
     }

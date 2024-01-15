@@ -19,21 +19,22 @@ public class Organizers {
     private String name;
     private int followers;
     private String email;
-    // private String password;
-    @ManyToMany
-    @JoinTable(
-        name="organizerEventMapping",
-        joinColumns = @JoinColumn(name="organizer_id"),
-        inverseJoinColumns = @JoinColumn(name="event_id")
-    )
+    private String password;
+    private String role;
+
+    @OneToMany(mappedBy = "organizers")
     private Set<Events> event;
     public Organizers(){
         
     }
+
     public Organizers(String email,int followers,String name){
         this.followers = 0;
         this.email = email;
         this.name = name;
+    }
+    public String getPassoword(){
+        return this.password;
     }
     public Set<Events> getEvent() {
         return event;
@@ -51,6 +52,9 @@ public class Organizers {
         return Id;
     }
 
+    public void setPassword(String password){
+        this.password = password;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
@@ -60,9 +64,9 @@ public class Organizers {
     public void setName(String name) {
         this.name = name;
     }
-    // public void setEvent(Events event) {
-    //     this.event = event;
-    // }
+    public void setEvent(Set<Events> event) {
+        this.event = event;
+    }
     
 
     
